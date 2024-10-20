@@ -3,6 +3,10 @@ package org.example.animals;
 import java.util.List;
 
 public class Carnivore extends Animal<Herbivore> {
+    public Carnivore(String name, int population, Herbivore food, double optimalTemp, double optimalWater) {
+        super(name, population, food, optimalTemp, optimalWater);
+    }
+
     @Override
     public boolean isEating(double tempEcosystem, double waterEcosystem, List<Herbivore> allHerbivoreEcosystem) {
         if (tempEcosystem <= optimalTemp + 20
