@@ -7,7 +7,7 @@ import java.util.List;
 public class Plant implements Growable {
     private String name;
     private int population;
-    private String food;
+    private List<String> food;
     private double optimalTemp;
     private double optimalHumidity; // от 0% до 100%
     private double optimalWater; // от 0% до 100%
@@ -17,7 +17,7 @@ public class Plant implements Growable {
         return name;
     }
 
-    public Plant(String name, int population, String food, double optimalTemp, double optimalHumidity, double optimalWater, double optimalLight) {
+    public Plant(String name, int population, List<String> food, double optimalTemp, double optimalHumidity, double optimalWater, double optimalLight) {
         this.name = name;
         this.population = population;
         this.food = food;
@@ -45,7 +45,7 @@ public class Plant implements Growable {
                 && lightEcosystem <= optimalLight + 10
                 && lightEcosystem >= optimalLight - 10
                 && lightEcosystem >= 1
-                && allResEcosystem.contains(food)
+                && food.stream().anyMatch(allResEcosystem::contains)
 
         ){
             return true;

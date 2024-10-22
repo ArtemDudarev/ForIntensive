@@ -14,15 +14,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        Plant plant0 = new Plant("grass",1500,"rock", 15,50,15,70);
-        Plant plant1 = new Plant("grass1",1500,"aaa", 15,50,15,70);
-        Plant plant2 = new Plant("grass2",1500,"rock", 15,50,15,70);
-        Plant plant3 = new Plant("grass3",1500,"ddd", 15,50,15,70);
+        Plant plant0 = new Plant("grass",1500,Arrays.asList("rock"), 15,50,15,70);
+        Plant plant1 = new Plant("grass1",1500,Arrays.asList("rock","aaa"), 15,50,15,70);
+        Plant plant2 = new Plant("grass2",1500,Arrays.asList("rock"), 15,50,15,70);
+        Plant plant3 = new Plant("grass3",1500,Arrays.asList("rock","ddd"), 15,50,15,70);
 
         List<String> resources = Arrays.asList("aaa", "ddd","rock");
 
-        Herbivore deer = new Herbivore("deer", 100, plant0, 20,15);
-        Herbivore cow = new Herbivore("cow", 80, plant3, 20,15);
+        Herbivore deer = new Herbivore("deer", 100, Arrays.asList(plant0,plant1), 20,15);
+        Herbivore cow = new Herbivore("cow", 80,Arrays.asList(plant2,plant3), 20,15);
 
         List<Plant> plants = Arrays.asList(plant0,plant1,plant2,plant3);
 
@@ -97,31 +97,31 @@ public class Main {
                         switch (choice){
                             //создание травы
                             case 1 -> {
-                                Plant grass = new Plant("grass", population,"nitrogen", 10, 30, 20,60);
+                                Plant grass = new Plant("grass", population,Arrays.asList("nitrogen"), 10, 30, 20,60);
                                 newP.add(grass);
                                 break;
                             }
                             //создание моркови
                             case 2 -> {
-                                Plant carrot = new Plant("carrot", population,"potassium", 20, 30, 15,40);
+                                Plant carrot = new Plant("carrot", population,Arrays.asList("nitrogen","potassium"), 20, 30, 15,40);
                                 newP.add(carrot);
                                 break;
                             }
                             //создание кукурузы
                             case 3 -> {
-                                Plant corn = new Plant("corn", population,"sulfur", 22, 30, 15,55);
+                                Plant corn = new Plant("corn", population,Arrays.asList("nitrogen", "sulfur"), 22, 30, 15,55);
                                 newP.add(corn);
                                 break;
                             }
                             //создание дерева
                             case 4 -> {
-                                Plant tree = new Plant("tree", population,"magnesium", 15, 30, 20,43);
+                                Plant tree = new Plant("tree", population,Arrays.asList("magnesium"), 15, 30, 20,43);
                                 newP.add(tree);
                                 break;
                             }
                             //создание ягод
                             case 5 -> {
-                                Plant berries = new Plant("berries", population,"nitrogen", 16, 30, 20,30);
+                                Plant berries = new Plant("berries", population,Arrays.asList("nitrogen"), 16, 30, 20,30);
                                 newP.add(berries);
                                 break;
                             }

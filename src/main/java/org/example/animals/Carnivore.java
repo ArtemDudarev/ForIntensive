@@ -3,7 +3,7 @@ package org.example.animals;
 import java.util.List;
 
 public class Carnivore extends Animal<Herbivore> {
-    public Carnivore(String name, int population, Herbivore food, double optimalTemp, double optimalWater) {
+    public Carnivore(String name, int population, List<Herbivore> food, double optimalTemp, double optimalWater) {
         super(name, population, food, optimalTemp, optimalWater);
     }
 
@@ -14,7 +14,7 @@ public class Carnivore extends Animal<Herbivore> {
                 && waterEcosystem <= optimalWater + 20
                 && waterEcosystem >= optimalWater - 20
                 && waterEcosystem >= 1
-                && allHerbivoreEcosystem.contains(food)
+                && food.stream().anyMatch(allHerbivoreEcosystem::contains)
 
         ){
             return true;

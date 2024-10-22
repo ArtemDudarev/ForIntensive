@@ -7,11 +7,11 @@ import java.util.List;
 public abstract class Animal<T> implements Eatable<T> {
     protected String name;
     protected int population;
-    protected T food;
+    protected List<T> food;
     protected double optimalTemp;
     protected double optimalWater;
 
-    public Animal(String name, int population, T food, double optimalTemp, double optimalWater) {
+    public Animal(String name, int population, List<T> food, double optimalTemp, double optimalWater) {
         this.name = name;
         this.population = population;
         this.food = food;
@@ -30,7 +30,7 @@ public abstract class Animal<T> implements Eatable<T> {
                 && waterEcosystem <= optimalWater + 20
                 && waterEcosystem >= optimalWater - 20
                 && waterEcosystem >= 1
-                && allPlantsEcosystem.contains(food)
+                && food.stream().anyMatch(allPlantsEcosystem::contains)
 
         ){
             return true;

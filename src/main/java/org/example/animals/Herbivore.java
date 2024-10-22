@@ -2,12 +2,13 @@ package org.example.animals;
 
 import org.example.plants.Plant;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Herbivore extends Animal<Plant>{
 
 
-    public Herbivore(String name, int population, Plant food, double optimalTemp, double optimalWater) {
+    public Herbivore(String name, int population, List<Plant> food, double optimalTemp, double optimalWater) {
         super(name, population, food, optimalTemp, optimalWater);
     }
 
@@ -18,7 +19,7 @@ public class Herbivore extends Animal<Plant>{
                 && waterEcosystem <= optimalWater + 20
                 && waterEcosystem >= optimalWater - 20
                 && waterEcosystem >= 1
-                && allPlantsEcosystem.contains(food)
+                && food.stream().anyMatch(allPlantsEcosystem::contains)
 
         ){
             return true;
