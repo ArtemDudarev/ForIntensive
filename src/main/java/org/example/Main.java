@@ -61,9 +61,10 @@ public class Main {
         System.out.println(" ===============Menu===============");
         System.out.println("|                                  |");
         System.out.println("| Enter menu number                |");
-        System.out.println("|1. Create new ecosystem           |");
-        System.out.println("|2. Upload ecosystem               |");
-        System.out.println("|3. Quit                           |");
+        System.out.println("|1. "+"\u001B[32m"+"Create new ecosystem "+"\u001B[0m"+"          |");
+        System.out.println("|2. "+"\u001B[33m"+"Upload ecosystem "+"\u001B[0m"+"              |");
+        System.out.println("|3."+"\u001B[31m"+" Quit "+"\u001B[0m"+"                          |");
+        System.out.println("|4. Information                    |");
         System.out.println("|                                  |");
         System.out.println(" ==================================");
 
@@ -75,6 +76,10 @@ public class Main {
                 List<Plant> newP = new ArrayList<>();
                 List<Animal> newA = new ArrayList<>();
                 List<String> newR = new ArrayList<>();
+
+                System.out.println("Enter the ecosystem name");
+                scanner.nextLine();
+                String nameEco = scanner.nextLine();
 
                 // Добавление ресурсов в экосистему
                 System.out.println("Enter the resources that will be in the ecosystem");
@@ -170,7 +175,7 @@ public class Main {
                                 newP.add(berries);
                                 break;
                             }
-                            default -> System.out.println("Please, enter correct value");
+                            default -> System.out.println("\u001B[31m" + "Please, enter correct value" + "\u001B[0m");
 
                         }
 
@@ -216,27 +221,101 @@ public class Main {
 
                         for (int i = 0; i < maxLength; i++) {
                             if (i < h.size()) {
-                                System.out.printf("%-20s", h.get(i));
+                                System.out.printf("%-20s", "\u001B[32m" + h.get(i));
                             } else {
                                 System.out.printf("%-20s", "");
                             }
 
                             if (i < c.size()) {
-                                System.out.printf("%s%n", c.get(i));
+                                System.out.printf("%s%n", "\u001B[31m" + c.get(i) + "\u001B[0m");
                             } else {
                                 System.out.printf("%n");
                             }
                         }
 
                         Scanner scanAnimal = new Scanner(System.in);
-
                         int choice = scanAnimal.nextInt();
 
-                        switch (choice){
-                            case 1 -> newA.add();
-                            break;
-                        }
+                        System.out.println("Enter animal population");
 
+                        int population = scanAnimal.nextInt();
+
+                        switch (choice){
+                            // Травоядные
+                            case 1 -> {
+                                grasshopper.setPopulation(population);
+                                newA.add(grasshopper);
+                                break;
+                            }
+                            case 2 -> {
+                                rabbit.setPopulation(population);
+                                newA.add(rabbit);
+                                break;
+                            }
+                            case 3 -> {
+                                mouse.setPopulation(population);
+                                newA.add(mouse);
+                                break;
+                            }
+                            case 4 -> {
+                                worm.setPopulation(population);
+                                newA.add(worm);
+                                break;
+                            }
+                            case 5 -> {
+                                lizard.setPopulation(population);
+                                newA.add(lizard);
+                                break;
+                            }
+                            case 6 -> {
+                                deer.setPopulation(population);
+                                newA.add(deer);
+                                break;
+                            }
+                            case 7 -> {
+                                elk.setPopulation(population);
+                                newA.add(elk);
+                                break;
+                            }
+
+                            // Плотоядные
+                            case 8 -> {
+                                lynx.setPopulation(population);
+                                newA.add(lynx);
+                                break;
+                            }
+                            case 9 -> {
+                                fox.setPopulation(population);
+                                newA.add(fox);
+                                break;
+                            }
+                            case 10 -> {
+                                wolf.setPopulation(population);
+                                newA.add(wolf);
+                                break;
+                            }
+                            case 11 -> {
+                                bear.setPopulation(population);
+                                newA.add(bear);
+                                break;
+                            }
+                            case 12 -> {
+                                frog.setPopulation(population);
+                                newA.add(frog);
+                                break;
+                            }
+                            case 13 -> {
+                                snake.setPopulation(population);
+                                newA.add(snake);
+                                break;
+                            }
+                            case 14 -> {
+                                owl.setPopulation(population);
+                                newA.add(owl);
+                                break;
+                            }
+                            default -> System.out.println("\u001B[31m" + "Please, enter correct value" + "\u001B[0m");
+                        }
                     }
                 }
 
@@ -257,8 +336,10 @@ public class Main {
                 System.out.println("Enter the ecosystem light");
                 double light = scanEcoValue.nextDouble();
 
-                Ecosystem  ecosystem = new Ecosystem("A",newP,newA,newR,temp,humidity,water,light);
+                Ecosystem  ecosystem = new Ecosystem(nameEco,newP,newA,newR,temp,humidity,water,light);
                 EcoCRUD.saveEco(ecosystem);
+
+                ecosystem.getInfo();
 
                 break;
             }
@@ -273,7 +354,7 @@ public class Main {
                 break;
             }
             default -> {
-                System.out.println("Please, enter correct value");
+                System.out.println("\u001B[31m" + "Please, enter correct value" + "\u001B[0m");
 
             }
         }

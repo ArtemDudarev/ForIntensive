@@ -27,6 +27,16 @@ public class Ecosystem {
         this.light = light;
     }
 
+    public void getInfo(){
+        System.out.println("Ecosystem name: " + name);
+        System.out.println("Ecosystem temperature: " + temperature + " C\u00B0");
+        System.out.println("Ecosystem humidity: " + humidity + " %");
+        System.out.println("Ecosystem water: " + water + " %");
+        System.out.println("Ecosystem light: " + light + " %");
+        System.out.println("Ecosystem resources: " + resources.toString());
+        System.out.println("Ecosystem plants: " + plants.toString());
+        System.out.println("Ecosystem animals: " + animals.toString());
+    }
     public void getStatus(){
         System.out.println("\n The state of all plants in the ecosystem: ");
         plants.stream().forEach(x-> System.out.println( "The plant " + x.getName()+ " is " + (x.isGrowing(temperature, humidity, water, light, resources) ? "survived" : "died")));

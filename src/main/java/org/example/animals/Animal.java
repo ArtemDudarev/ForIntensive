@@ -41,4 +41,15 @@ public abstract class Animal<T> implements Eatable<T> {
         }
         else return false;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", population=" + population +
+                ", food=" + food +
+                ", optimalTemp=" + optimalTemp +
+                ", optimalWater=" + optimalWater +
+                '}';
+    }
 }

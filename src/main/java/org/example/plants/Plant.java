@@ -57,7 +57,16 @@ public class Plant implements Growable {
         else return false;
     }
 
-    public void test(Ecosystem ecosystem){
-
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "name='" + name + '\'' +
+                ", population=" + population +
+                ", food=" + food +
+                ", optimalTemp=" + optimalTemp +
+                ", optimalHumidity=" + optimalHumidity +
+                ", optimalWater=" + optimalWater +
+                ", optimalLight=" + optimalLight +
+                '}';
     }
 }
