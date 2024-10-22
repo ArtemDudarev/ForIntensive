@@ -14,17 +14,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        Plant plant = new Plant("grass",1500,"rock", 15,50,15,70);
+        Plant plant0 = new Plant("grass",1500,"rock", 15,50,15,70);
         Plant plant1 = new Plant("grass1",1500,"aaa", 15,50,15,70);
         Plant plant2 = new Plant("grass2",1500,"rock", 15,50,15,70);
         Plant plant3 = new Plant("grass3",1500,"ddd", 15,50,15,70);
 
         List<String> resources = Arrays.asList("aaa", "ddd","rock");
 
-        Herbivore deer = new Herbivore("deer", 100, plant, 20,15);
+        Herbivore deer = new Herbivore("deer", 100, plant0, 20,15);
         Herbivore cow = new Herbivore("cow", 80, plant3, 20,15);
 
-        List<Plant> plants = Arrays.asList(plant,plant1,plant2,plant3);
+        List<Plant> plants = Arrays.asList(plant0,plant1,plant2,plant3);
 
         List<Animal> animals = Arrays.asList(deer,cow);
 
@@ -60,6 +60,7 @@ public class Main {
                     System.out.println("2. Don't add and continue");
                     choiceRes = scanner.nextInt();
                     if (choiceRes != 2){
+                        System.out.println("Please, select resource");
                         Scanner scanResource = new Scanner(System.in);
                         String res = scanResource.nextLine();
                         newR.add(res);
@@ -78,29 +79,74 @@ public class Main {
 
                         Scanner scanPlant = new Scanner(System.in);
 
-                        System.out.println("Enter the name of the plant");
-                        String name = scanPlant.nextLine();
+                        System.out.println("Select the plant you want to add");
+                        System.out.println("1. grass");
+                        System.out.println("2. carrot");
+                        System.out.println("3. corn");
+                        System.out.println("4. tree");
+                        System.out.println("5. berries");
+
+                        int choice = scanPlant.nextInt();
+
+//                        System.out.println("Enter the name of the plant");
+//                        String name = scanPlant.nextLine();
 
                         System.out.println("Enter plant population");
                         int population = scanPlant.nextInt();
 
-                        System.out.println("Enter the food for plant");
-                        scanPlant.nextLine();
-                        String food = scanPlant.nextLine();
+                        switch (choice){
+                            //создание травы
+                            case 1 -> {
+                                Plant grass = new Plant("grass", population,"nitrogen", 10, 30, 20,60);
+                                newP.add(grass);
+                                break;
+                            }
+                            //создание моркови
+                            case 2 -> {
+                                Plant carrot = new Plant("carrot", population,"potassium", 20, 30, 15,40);
+                                newP.add(carrot);
+                                break;
+                            }
+                            //создание кукурузы
+                            case 3 -> {
+                                Plant corn = new Plant("corn", population,"sulfur", 22, 30, 15,55);
+                                newP.add(corn);
+                                break;
+                            }
+                            //создание дерева
+                            case 4 -> {
+                                Plant tree = new Plant("tree", population,"magnesium", 15, 30, 20,43);
+                                newP.add(tree);
+                                break;
+                            }
+                            //создание ягод
+                            case 5 -> {
+                                Plant berries = new Plant("berries", population,"nitrogen", 16, 30, 20,30);
+                                newP.add(berries);
+                                break;
+                            }
+                            default -> System.out.println("Please, enter correct value");
 
-                        System.out.println("Enter the optimal temperature for plant");
-                        double optimalTemp = scanPlant.nextDouble();
+                        }
 
-                        System.out.println("Enter the optimal humidity for plant");
-                        double optimalHumidity = scanPlant.nextDouble();
+//                        System.out.println("Enter the food for plant");
+//                        scanPlant.nextLine();
+//                        String food = scanPlant.nextLine();
+//
+//                        System.out.println("Enter the optimal temperature for plant");
+//                        double optimalTemp = scanPlant.nextDouble();
+//
+//                        System.out.println("Enter the optimal humidity for plant");
+//                        double optimalHumidity = scanPlant.nextDouble();
+//
+//                        System.out.println("Enter the optimal water for plant");
+//                        double optimalWater = scanPlant.nextDouble();
+//
+//                        System.out.println("Enter the optimal light for plant");
+//                        double optimalLight = scanPlant.nextDouble();
 
-                        System.out.println("Enter the optimal water for plant");
-                        double optimalWater = scanPlant.nextDouble();
+                        //newP.add(new Plant(name,population,food,optimalTemp,optimalHumidity,optimalWater,optimalLight));
 
-                        System.out.println("Enter the optimal light for plant");
-                        double optimalLight = scanPlant.nextDouble();
-
-                        newP.add(new Plant(name,population,food,optimalTemp,optimalHumidity,optimalWater,optimalLight));
                     }
                 }
 
