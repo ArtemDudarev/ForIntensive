@@ -7,6 +7,7 @@ import org.example.plants.Plant;
 import java.util.List;
 
 public class Ecosystem {
+    private String name;
     private List<Plant> plants;
     private List<Animal> animals;
     private List<String> resources;
@@ -15,7 +16,8 @@ public class Ecosystem {
     private double water;
     private double light;
 
-    public Ecosystem(List<Plant> plants, List<Animal> animals, List<String> resources, double temperature, double humidity, double water, double light) {
+    public Ecosystem(String name, List<Plant> plants, List<Animal> animals, List<String> resources, double temperature, double humidity, double water, double light) {
+        this.name = name;
         this.plants = plants;
         this.animals = animals;
         this.resources = resources;
