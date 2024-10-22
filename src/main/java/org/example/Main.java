@@ -3,6 +3,7 @@ package org.example;
 import org.example.Ecosystems.EcoCRUD;
 import org.example.Ecosystems.Ecosystem;
 import org.example.animals.Animal;
+import org.example.animals.Carnivore;
 import org.example.animals.Herbivore;
 import org.example.plants.Plant;
 
@@ -21,16 +22,40 @@ public class Main {
 
         List<String> resources = Arrays.asList("aaa", "ddd","rock");
 
-        Herbivore deer = new Herbivore("deer", 100, Arrays.asList(plant0,plant1), 20,15);
+        Herbivore deer0 = new Herbivore("deer", 100, Arrays.asList(plant0,plant1), 20,15);
         Herbivore cow = new Herbivore("cow", 80,Arrays.asList(plant2,plant3), 20,15);
 
         List<Plant> plants = Arrays.asList(plant0,plant1,plant2,plant3);
 
-        List<Animal> animals = Arrays.asList(deer,cow);
+        List<Animal> animals = Arrays.asList(deer0,cow);
 
         Ecosystem ecosystem0 = new Ecosystem("Test", plants, animals,resources,15, 45, 20,78);
 
         ecosystem0.getStatus();
+
+
+        // Создание всех растений и животных
+        Plant grass = new Plant("grass", 0,Arrays.asList("nitrogen"), 10, 30, 20,60);
+        Plant carrot = new Plant("carrot", 0,Arrays.asList("nitrogen","potassium"), 20, 30, 15,40);
+        Plant corn = new Plant("corn", 0,Arrays.asList("nitrogen", "sulfur"), 22, 30, 15,55);
+        Plant tree = new Plant("tree", 0,Arrays.asList("magnesium"), 15, 30, 20,43);
+        Plant berries = new Plant("berries", 0,Arrays.asList("nitrogen"), 16, 30, 20,30);
+
+        Animal grasshopper = new Herbivore("grasshopper",0, Arrays.asList(grass),23,20);
+        Animal rabbit = new Herbivore("rabbit",0, Arrays.asList(carrot),21,28);
+        Animal mouse = new Herbivore("mouse",0, Arrays.asList(carrot,corn),23,20);
+        Animal worm = new Herbivore("worm",0, Arrays.asList(grass,carrot,corn,tree),25,40);
+        Animal lizard = new Herbivore("lizard",0, Arrays.asList(grass,berries),25,40);
+        Animal deer = new Herbivore("deer",0, Arrays.asList(grass,berries),15,20);
+        Animal elk = new Herbivore("elk",0, Arrays.asList(grass,tree),15,20);
+
+        Animal lynx = new Carnivore("lynx", 0, Arrays.asList(rabbit, deer),15,20);
+        Animal fox = new Carnivore("fox", 0, Arrays.asList(rabbit,mouse),15,20);
+        Animal wolf = new Carnivore("wolf", 0, Arrays.asList(rabbit,deer,elk),15,20);
+        Animal bear = new Carnivore("bear", 0, Arrays.asList(deer,elk),15,20);
+        Animal frog = new Carnivore("frog", 0, Arrays.asList(grasshopper,worm),15,20);
+        Animal snake = new Carnivore("snake", 0, Arrays.asList(mouse,lizard,frog),15,20);
+        Animal owl = new Carnivore("owl", 0, Arrays.asList(rabbit,mouse,lizard,snake),15,20);
 
         // Создание меню
         System.out.println(" ===============Menu===============");
@@ -61,9 +86,21 @@ public class Main {
                     choiceRes = scanner.nextInt();
                     if (choiceRes != 2){
                         System.out.println("Please, select resource");
+                        System.out.println("1. nitrogen");
+                        System.out.println("2. potassium");
+                        System.out.println("3. sulfur");
+                        System.out.println("4. magnesium");
+                        System.out.println("5. phosphorus");
+
                         Scanner scanResource = new Scanner(System.in);
-                        String res = scanResource.nextLine();
-                        newR.add(res);
+                        int res = scanResource.nextInt();
+                        switch (res){
+                            case 1 -> newR.add("nitrogen");
+                            case 2 -> newR.add("potassium");
+                            case 3 -> newR.add("sulfur");
+                            case 4 -> newR.add("magnesium");
+                            case 5 -> newR.add("phosphorus");
+                        }
                     }
                 }
 
@@ -94,34 +131,42 @@ public class Main {
                         System.out.println("Enter plant population");
                         int population = scanPlant.nextInt();
 
+                        // Пользователь выбирает растение и указывает популящию.
+                        // У растения меняется популяция на ту, которую указал пользователь.
+                        // И растение добавляется в коллекцию, которая потом попадёт в экосистему.
                         switch (choice){
                             //создание травы
                             case 1 -> {
-                                Plant grass = new Plant("grass", population,Arrays.asList("nitrogen"), 10, 30, 20,60);
+                                //Plant grass = new Plant("grass", population,Arrays.asList("nitrogen"), 10, 30, 20,60);
+                                grass.setPopulation(population);
                                 newP.add(grass);
                                 break;
                             }
                             //создание моркови
                             case 2 -> {
-                                Plant carrot = new Plant("carrot", population,Arrays.asList("nitrogen","potassium"), 20, 30, 15,40);
+                                //Plant carrot = new Plant("carrot", population,Arrays.asList("nitrogen","potassium"), 20, 30, 15,40);
+                                carrot.setPopulation(population);
                                 newP.add(carrot);
                                 break;
                             }
                             //создание кукурузы
                             case 3 -> {
-                                Plant corn = new Plant("corn", population,Arrays.asList("nitrogen", "sulfur"), 22, 30, 15,55);
+                                //Plant corn = new Plant("corn", population,Arrays.asList("nitrogen", "sulfur"), 22, 30, 15,55);
+                                corn.setPopulation(population);
                                 newP.add(corn);
                                 break;
                             }
                             //создание дерева
                             case 4 -> {
-                                Plant tree = new Plant("tree", population,Arrays.asList("magnesium"), 15, 30, 20,43);
+                                //Plant tree = new Plant("tree", population,Arrays.asList("magnesium"), 15, 30, 20,43);
+                                tree.setPopulation(population);
                                 newP.add(tree);
                                 break;
                             }
                             //создание ягод
                             case 5 -> {
-                                Plant berries = new Plant("berries", population,Arrays.asList("nitrogen"), 16, 30, 20,30);
+                                //Plant berries = new Plant("berries", population,Arrays.asList("nitrogen"), 16, 30, 20,30);
+                                berries.setPopulation(population);
                                 newP.add(berries);
                                 break;
                             }
@@ -150,7 +195,9 @@ public class Main {
                     }
                 }
 
-                // Добавление животных в экосистему
+                // Пользователь выбирает животное и указывает популящию.
+                // У животных меняется популяция на ту, которую указал пользователь.
+                // И животное добавляется в коллекцию, которая потом попадёт в экосистему.
                 System.out.println("Enter the animal that will be in the ecosystem");
                 choiceRes = 0;
                 while (choiceRes != 2) {
@@ -160,15 +207,35 @@ public class Main {
                     choiceRes = scanner.nextInt();
                     if (choiceRes != 2){
 
+                        System.out.println("Select the animal you want to add");
+
+                        List<String> h = Arrays.asList("===Herbivore===", "1. grasshopper", "2. rabbit", "3. mouse", "4. worm", "5. lizard", "6. deer", "7. elk");
+                        List<String> c = Arrays.asList("===Carnivore===", "8. lynx", "9. fox", "10. wolf", "11. bear", "12. frog", "13. snake", "14. owl");
+
+                        int maxLength = Math.max(h.size(), c.size());
+
+                        for (int i = 0; i < maxLength; i++) {
+                            if (i < h.size()) {
+                                System.out.printf("%-20s", h.get(i));
+                            } else {
+                                System.out.printf("%-20s", "");
+                            }
+
+                            if (i < c.size()) {
+                                System.out.printf("%s%n", c.get(i));
+                            } else {
+                                System.out.printf("%n");
+                            }
+                        }
+
                         Scanner scanAnimal = new Scanner(System.in);
 
-                        System.out.println("Enter the name of the animal");
-                        String name = scanAnimal.nextLine();
+                        int choice = scanAnimal.nextInt();
 
-                        System.out.println("Enter the animal population");
-                        int population = scanAnimal.nextInt();
-
-                        System.out.println("Enter animal food");
+                        switch (choice){
+                            case 1 -> newA.add();
+                            break;
+                        }
 
                     }
                 }

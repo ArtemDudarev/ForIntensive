@@ -23,6 +23,10 @@ public abstract class Animal<T> implements Eatable<T> {
         return name;
     }
 
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
     @Override
     public boolean isEating(double tempEcosystem, double waterEcosystem, List<T> allPlantsEcosystem) {
         if (tempEcosystem <= optimalTemp + 20

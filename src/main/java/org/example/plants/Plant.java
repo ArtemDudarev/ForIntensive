@@ -13,6 +13,10 @@ public class Plant implements Growable {
     private double optimalWater; // от 0% до 100%
     private double optimalLight; // от 0% до 100%
 
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
     public String getName() {
         return name;
     }
